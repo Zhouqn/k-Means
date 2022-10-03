@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
-import data
+# import data
 
 # n = 9
 stock_num = 1000  # 1000条股票数据
-day_num = 19  # 计算19天的kdj值
+day_num = 6  # 计算x天的kdj值
 
-data.take_the_data()
+# data.take_the_data()
 stock_data = pd.read_csv("stock_data.csv")
 daily_data = pd.read_csv("daily_data.csv")
 

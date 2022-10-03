@@ -72,7 +72,10 @@ def clustering():
     # 获取聚类后的样本所属的簇值，将matrix转换为ndarray
     y_kmeans = clusterAssment[:, 0].A[:, 0]
     kdj_centroids = pd.DataFrame(y_kmeans, columns=['簇'])
+    kdj_centroids[["簇"]] = kdj_centroids[["簇"]].astype(int)
+
     kdj_centroids_data = pd.concat([pd.DataFrame(kdj_data), kdj_centroids], axis=1)
+    kdj_centroids_data.sort_values("簇", inplace=True)
     kdj_centroids_data.to_csv('kdj_centroids_data.csv', index=False)
     show(X, y_kmeans)
     return kdj_centroids_data
