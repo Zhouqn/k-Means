@@ -3,9 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import kdj
 
-kdj.creat_kdj_data()
-kdj_data = pd.read_csv('stock_kdj.csv')
-
 
 def euclidean_dist(vecA, vecB):
     """
@@ -63,7 +60,8 @@ def kMeans(dataSet, k, distMeas=euclidean_dist, createCent=rand_cent):
 K = 3
 
 
-def clustering():
+def clustering(stock_data_file="stock_data.csv", daily_data_file="daily_data.csv"):
+    kdj_data = kdj.creat_kdj_data(stock_data_file, daily_data_file)
     _kdj = kdj_data.iloc[:, 3:]
     X = np.array(_kdj)
     # myCentroids为簇质心

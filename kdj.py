@@ -7,8 +7,6 @@ stock_num = 1000  # 1000条股票数据
 day_num = 6  # 计算x天的kdj值
 
 # data.take_the_data()
-stock_data = pd.read_csv("stock_data.csv")
-daily_data = pd.read_csv("daily_data.csv")
 
 
 def get_rsv(data_30):
@@ -49,7 +47,8 @@ def get_j(k_arr, d_arr):
 
 
 # 计算KDJ指标
-def calculate():
+def calculate(daily_data_file):
+    daily_data = pd.read_csv(daily_data_file)
     kdj = []
     for i in range(stock_num):
         n = i*30
@@ -66,9 +65,10 @@ def calculate():
     return kdj
 
 
-def creat_kdj_data():
-    kdj_data = pd.DataFrame(calculate(), columns=['k', 'd', 'j'])
+def creat_kdj_data(stock_data_file, daily_data_file):
+    kdj_data = pd.DataFrame(calculate(daily_data_file), columns=['k', 'd', 'j'])
     # 拼接股票数据和kdj指标
+    stock_data = pd.read_csv(stock_data_file)
     stock_kdj = pd.concat([stock_data, kdj_data], axis=1)
     stock_kdj.to_csv('stock_kdj.csv', index=False)
     return stock_kdj

@@ -54,9 +54,6 @@ def get_daily_data(ts_code):
     return df
 
 
-s_data = get_stock_data(stock_data_szse, stock_data_sse)
-
-
 def take_the_data():
     """
     :return: 返回过滤后的1000只股票数据 以及 这1000只股票的30天日线行情
@@ -64,6 +61,7 @@ def take_the_data():
     count = 0
     stock_data = pd.DataFrame(columns=['ts_code', 'symbol', 'name'])
     daily_data = pd.DataFrame(columns=['ts_code', 'high', 'low', 'close'])
+    s_data = get_stock_data(stock_data_szse, stock_data_sse)
     for index, row in s_data.iterrows():
         print(count)
         # 取1000只股票
